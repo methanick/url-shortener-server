@@ -45,3 +45,14 @@ exports.get = async (req, res) => {
       res.status(500).json('Server Error');
     }
   };
+
+
+// Get 10 Short Url
+exports.getAll = async (req, res) => {
+    try {
+      const urls = await ShortUrls.find().limit(10).sort({createAt:-1})
+        return res.json(urls)
+    } catch (err) {
+      res.status(500).json('Server Error');
+    }
+  };

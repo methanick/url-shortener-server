@@ -1,9 +1,10 @@
 const express = require('express')
 const router = express.Router()
-const {create,get} = require('../controllers/shortUrlController')
+const {create,get,getAll} = require('../controllers/shortUrlController')
 
-router.get('/:urlId',get)
+router.get('/shorturls',getAll)
 router.post('/shorturl',create)
+router.get('/:urlId',get)
 
 
 module.exports = router

@@ -3,8 +3,9 @@ const mongoose = require('mongoose')
 const morgan = require('morgan')
 const cors = require('cors')
 require('dotenv').config()
-const ShortUrl = require('./models/shortUrl')
 const shortUrlRoute = require('./routes/shortUrl')
+
+const PORT = process.env.PORT || 3000
 
 
 
@@ -24,15 +25,18 @@ app.use(cors())
 app.use(morgan('dev'))
 
 //route
-// app.get('/shorturl',(req,res)=>{
-//     res.send('hello')
-// })
+app.get('/',(req,res)=>{
+    res.send('this is my server for short url exam')
+})
 
-// app.post('/shorturl',async (req, res)=>{
-//     res.send('hello world')
-//    await ShortUrl.create({fullUrl:req.body.fullUrl})
-// })
 
 app.use('/',shortUrlRoute)
 
-app.listen(process.env.PORT || 3000,()=>console.log('Server is start'))
+
+
+//Connect to the database before listening
+connectDB().then(() => {
+    app.listen(PORT, () => {
+        console.log("listening for requests");
+    })
+})

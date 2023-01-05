@@ -16,18 +16,8 @@ const connectDB = async () => {
       process.exit(1);
     }
   }
-
-
-
+  
 const app = express()
-
-//connect db
-mongoose.connect(process.env.DATABASE,{
-    useNewUrlParser:true,
-    useUnifiedTopology:true
-}).then(()=>console.log('Database is connect'))
-.catch((err)=>console.log(err))
-
 
 //middleware
 app.use(express.json())

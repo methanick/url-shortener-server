@@ -7,6 +7,16 @@ const shortUrlRoute = require('./routes/shortUrl')
 
 const PORT = process.env.PORT || 3000
 
+const connectDB = async () => {
+    try {
+      const conn = await mongoose.connect(process.env.DATABASE);
+      console.log(`MongoDB Connected: ${conn.connection.host}`);
+    } catch (error) {
+      console.log(error);
+      process.exit(1);
+    }
+  }
+
 
 
 const app = express()
